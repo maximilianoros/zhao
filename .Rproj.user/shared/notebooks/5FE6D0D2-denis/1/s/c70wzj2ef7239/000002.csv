@@ -1,0 +1,7 @@
+"0","grafico.rt<- denis %>%  filter(year>2012) %>%  ggplot()+"
+"0","  geom_dumbbell(aes(y= title, x=tomatometer, xend=`audience RT`),size=3, color=""#e3e2e1"","
+"0","                colour_x = ""#fa320a"", colour_xend = ""#f9d320"")+"
+"0","  scale_x_continuous(labels = percent_format(),limits=c(0.5,1),breaks = seq(0.50,1,0.1))+"
+"0"," labs(x="""", title=""<span style='color: #FA8806;'>**Denis Villeneuve**</span>"", subtitle = ""Puntaje de sus películas según <span style='color:#fa320a;'>**tomatometer**</span> o <span style='color:#f9d320;'>**audiencia**</span> (2013-2021)"", caption = ""<span style='color:#4F4F4F;'> **Fuente: Maximiliano Ros en base a datos de Rotten Tomatoes**.</span>"")+"
+"0","  theme(plot.title.position = ""plot"",plot.title = element_markdown(family=""BRLNSR"", size=26),plot.subtitle = element_markdown(family=""BRLNSR"", size=16), panel.background = element_blank(),axis.ticks = element_blank(),plot.caption = element_markdown(size=8,hjust=0,family = ""BRLNSR"" ), text = element_text(family = """"),panel.grid.major = element_blank(),legend.position = ""none"",legend.box.background =  element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank(), axis.text = element_markdown(size=9.5,family = ""BRLNSR"", colour = ""BLACK""), axis.ticks.x = element_line())"
+"0","grafico.rt"

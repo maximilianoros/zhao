@@ -1,0 +1,55 @@
+---
+title: "Eternals"
+author: "Maximiliano Ros"
+date: "5/11/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(ggplot2)
+library(tidyverse)
+library(ggalt)
+library(scales)
+library(forcats)
+library(png)
+library(ggimage)
+library(showtext)
+font_add(family = "rotten", regular = "adlib.ttf")
+showtext_auto()
+```
+
+```{r}
+eternals<- data.frame("Year"= c(2021,2020,2017,2015),
+                      "Title"=c("Eternals", "Nomadland", "The Rider","Songs My Brothers \nTaught Me"),
+                       "Tomatometer"=c(0.49, 0.93,0.97, 0.94), 
+                      "Audience Score"=c(0.86,0.82, 0.82, 0.64))
+directorio<- getwd()
+tomate<- readPNG("tomate.png")
+
+eternals$critica.png<- c("splash.png", "Certified.png", "Certified.png","tomate.png") 
+eternals$audiencia.png<- "audience.png"
+```
+
+```{r fig.width=8}
+eternals %>% mutate(Title=fct_reorder(Title, Year))%>% ggplot(aes(x=Tomatometer,xend=Audience.Score, y=Title))+
+  geom_dumbbell(aes(x=Tomatometer, xend=Audience.Score),size=3, color="#e3e2e1",  colour_x = "#fFFFFF", colour_xend = "#FFFFFF")+
+  geom_image(aes(image=critica.png), size=0.07)+
+  geom_image(aes(x=Audience.Score, image= audiencia.png), size=0.06)+
+  annotate("text", x=0.44, y="Eternals", label="49%", colour="#fa320a", family="BRLNSR", size=5)+
+  annotate("text", x=0.98, y="Nomadland", label="93%", colour="#fa320a", family="BRLNSR",size=5)+
+  annotate("text", x=1.02, y="The Rider", label="97%", colour="#fa320a", family="BRLNSR",size=5)+
+  annotate("text", x=0.99, y="Songs My Brothers \nTaught Me", label="94%", colour="#fa320a", family="BRLNSR",size=5)+
+  annotate("text", x=0.93, y="Eternals", label="86%", colour="#f9d320", family="BRLNSR", fontface=3,size=5)+
+  annotate("text", x=0.77, y="Nomadland", label="82%", colour="#f9d320", family="BRLNSR", fontface=3,size=5)+
+  annotate("text", x=0.77, y="The Rider", label="82%", colour="#f9d320", family="BRLNSR", fontface=3,size=5)+
+  annotate("text", x=0.59, y="Songs My Brothers \nTaught Me", label="64%", colour="#f9d320", family="BRLNSR", fontface=3, size=5)+
+  labs(x="", title="<span style='color:#fa320a;'>**TOMATOMETER**</span> vs <span style='color:#f9d320;'>**AUDIENCE SCORE**</span> ", subtitle = "Chloé Zhao", caption = "<span style='color:#4F4F4F;'> **Fuente: Maximiliano Ros en base a datos de Rotten Tomatoes**.</span>")+
+  theme(plot.title.position = "plot",plot.title = element_markdown(family="rotten", size=20, hjust = 0.5),plot.subtitle = element_markdown(family="BRLNSR", size=16, hjust=0.5), panel.background = element_blank(),axis.ticks = element_blank(),plot.caption = element_markdown(size=8,hjust=-0.3,family = "BRLNSR" ), text = element_text(family = ""),panel.grid.major = element_blank(),legend.position = "none",legend.box.background =  element_blank(), axis.title.x = element_blank(), axis.title.y = element_blank(), axis.text = element_markdown(size=12.5,family = "BRLNSR", colour = "BLACK"), axis.text.x = element_blank())
+```
+
+

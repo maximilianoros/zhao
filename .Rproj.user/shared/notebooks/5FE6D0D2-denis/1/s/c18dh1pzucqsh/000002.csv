@@ -1,0 +1,5 @@
+"0","denis<- read_excel(""Denis.xlsx"")"
+"0","denis$title<- as.character(denis$title)"
+"0","denis[denis==""Blade Runner 2049""]<- ""Blade Runner \n2049"""
+"0","denis<- denis[order(denis$year), ] "
+"0","denis$title<-factor(denis$title, levels = denis$title)"
